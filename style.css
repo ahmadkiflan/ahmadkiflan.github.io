@@ -39,6 +39,7 @@ header h2 {
   flex-direction: column;
   gap: 0.3rem;
   border-radius: 1rem;
+  width: 70%;
 }
 
 div.card-wrap {
@@ -46,8 +47,8 @@ div.card-wrap {
 }
 
 .card img {
-  width: 200px;
-  height: 250px;
+  width: 100%;
+  height: 300px;
   object-fit: cover;
   border-radius: 1rem;
   transition: 0.3s;
