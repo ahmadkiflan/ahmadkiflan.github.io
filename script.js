@@ -7,7 +7,7 @@ const searchButton = async () => {
 };
 
 const getMovies = (inputKeyword) =>
-  fetch(`http://www.omdbapi.com/?apikey=db87e2cb&s=${inputKeyword}`)
+  fetch(`https://www.omdbapi.com/?apikey=db87e2cb&s=${inputKeyword}`)
     .then((response) => response.json())
     .then((response) => response.Search);
 
@@ -38,7 +38,7 @@ const uImovieDetail = (movie) => {
 };
 
 const getMovieDetail = (imdbid) =>
-  fetch(`http://www.omdbapi.com/?apikey=db87e2cb&i=${imdbid}`)
+  fetch(`https://www.omdbapi.com/?apikey=db87e2cb&i=${imdbid}`)
     .then((response) => response.json())
     .then((response) => response);
 
