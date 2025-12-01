@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OMDB API</title>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Cari Film di sini broo👇</h1>
+      <section class="input">
+        <input
+          id="input-search"
+          type="text"
+          autofocus
+          autocomplete="off"
+          placeholder="search movie..."
+        />
+        <button id="search-button" onclick="searchButton()">Search</button>
+      </section>
+    </header>
+    <main>
+      <article id="movies-container"></article>
+    </main>
+    <footer></footer>
+    <div class="modal"></div>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
