@@ -7,7 +7,7 @@
 
 body {
   background-color: #0a0a0a;
-  padding: 3rem;
+  padding: 1rem;
 }
 
 header h1 {
@@ -24,11 +24,11 @@ header h2 {
 #movies-container {
   margin-top: 2rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   gap: 1.5rem;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  justify-content: center;
 }
 
 .card {
@@ -39,7 +39,8 @@ header h2 {
   flex-direction: column;
   gap: 0.3rem;
   border-radius: 1rem;
-  width: 90%;
+  width: 200px;
+  height: auto;
 }
 
 div.card-wrap {
@@ -48,7 +49,7 @@ div.card-wrap {
 
 .card img {
   width: 100%;
-  height: 400px;
+  height: 250px;
   object-fit: cover;
   border-radius: 1rem;
   transition: 0.3s;
