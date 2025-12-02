@@ -32,6 +32,10 @@ header h2 {
   gap: 1rem;
 }
 
+h2 {
+  text-align: center;
+}
+
 .card {
   outline: auto;
   background-color: crimson;

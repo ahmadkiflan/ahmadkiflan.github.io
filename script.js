@@ -54,6 +54,7 @@ const showMovie = (movie) =>
 
 const showMovieDetail = (movie) =>
   `<article class="modal-wrap" data-aos="zoom-in" data-aos-duration="300">
+   <h2>tapi belum bisa di download😂🫵</h2>
     <figure class="modal-wrap-img">
       <img class="modal-img" src="${movie.Poster}" />
       <button id="close-button">Close</button>
