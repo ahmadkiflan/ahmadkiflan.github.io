@@ -26,9 +26,10 @@ header h2 {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1.5rem;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: center;
+  /* background-color: aqua; */
+  gap: 1rem;
 }
 
 .card {
@@ -39,9 +40,9 @@ header h2 {
   flex-direction: column;
   gap: 0.3rem;
   border-radius: 1rem;
-  width: 170px;
+  width: 160px;
   height: auto;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 div.card-wrap {
