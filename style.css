@@ -157,10 +157,11 @@ div.card-wrap {
   padding: 1rem;
   width: 50%;
   cursor: pointer;
+  background-color: #0a0a0a;
+  color: white;
 }
 
 #close-button:hover {
-  background-color: #0a0a0a;
   color: white;
   outline: auto;
 }
