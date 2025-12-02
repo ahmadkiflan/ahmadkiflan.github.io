@@ -127,6 +127,7 @@ div.card-wrap {
   flex-wrap: wrap;
   height: 500px;
   overflow: auto;
+  align-items: center;
 }
 
 .modal-content {
@@ -136,18 +137,20 @@ div.card-wrap {
 }
 
 .modal-img {
+  display: flex;
   object-fit: cover;
-  width: 350px;
+  width: 300px;
   height: 400px;
   object-position: top;
 }
 
 .modal-wrap-img {
-  width: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  margin: 0 auto;
 }
 
 #close-button {
