@@ -1,17 +1,26 @@
 const searchButton = async () => {
-  const inputSearch = document.getElementById("input-search");
-  const value = inputSearch.value;
-  inputSearch.value = "";
-  const movies = await getMovies(value);
-  uImovies(movies);
+  try {
+    const inputKeyword = document.getElementById("input-keyword");
+    const movies = await fetchMovies(inputKeyword.value);
+    uImovie(movies);
+    inputKeyword.value = "";
+  } catch (error) {
+    alert(error);
+  }
 };
 
-const getMovies = (inputKeyword) =>
-  fetch(`https://www.omdbapi.com/?apikey=db87e2cb&s=${inputKeyword}`)
-    .then((response) => response.json())
-    .then((response) => response.Search);
+const fetchMovies = (value) =>
+  fetch(`https://www.omdbapi.com/?apikey=db87e2cb&s=${value}`)
+    .then((response) => {
+      if (response.ok === false) throw new Error(response.status);
+      return response.json();
+    })
+    .then((response) => {
+      if (response.Response === "False") throw new Error(response.Error);
+      return response.Search;
+    });
 
-const uImovies = (movies) => {
+const uImovie = (movies) => {
   let cards = "";
   for (const movie of movies) {
     cards += showMovie(movie);
@@ -20,41 +29,52 @@ const uImovies = (movies) => {
   moviesContainer.innerHTML = cards;
 };
 
+const showMovie = (movie) =>
+  `<section class="card">
+      <figure>
+        <img src="${movie.Poster}" />
+      </figure>
+      <button class="movie-detail-button" data-imdbid="${movie.imdbID}">
+        Movie Detail
+      </button>
+    </section>`;
+
 document.addEventListener("click", async (e) => {
-  const imdbid = e.target.dataset.imdbid;
-  const movieDetail = await getMovieDetail(imdbid);
-  uImovieDetail(movieDetail);
+  try {
+    if (e.target.classList.contains("movie-detail-button")) {
+      const imdbid = e.target.dataset.imdbid;
+      const movieDetail = await fetchMovieDetail(imdbid);
+      uImoviDetail(movieDetail);
+    }
+  } catch (error) {
+    alert(error);
+  }
 });
 
-const uImovieDetail = (movie) => {
-  const modalContainer = document.querySelector(".modal");
+const fetchMovieDetail = (imdbid) =>
+  fetch(`https://www.omdbapi.com/?apikey=db87e2cb&i=${imdbid}`)
+    .then((response) => {
+      if (response.ok === false) throw new Error(response.status);
+      return response.json();
+    })
+    .then((response) => response);
+
+const uImoviDetail = (movie) => {
+  const modalContainer = document.getElementsByClassName("modal")[0];
   modalContainer.style.display = "flex";
   modalContainer.innerHTML = showMovieDetail(movie);
   modalContainer.addEventListener("click", (e) => {
-    if (e.target.className == "modal" || e.target.id == "close-button") {
+    if (e.target.id === "close-button" || e.target.className === "modal") {
       modalContainer.style.display = "none";
     }
   });
 };
 
-const getMovieDetail = (imdbid) =>
-  fetch(`https://www.omdbapi.com/?apikey=db87e2cb&i=${imdbid}`)
-    .then((response) => response.json())
-    .then((response) => response);
-
-const showMovie = (movie) =>
-  `<section class="card">
-    <figure>
-      <img src="${movie.Poster}" />
-    </figure>
-    <button class="movie-detail-button" data-imdbid="${movie.imdbID}">
-      Movie Detail
-    </button>
-  </section>`;
-
 const showMovieDetail = (movie) =>
   `<article class="modal-wrap" data-aos="zoom-in" data-aos-duration="300">
-   <h2>tapi belum bisa di download😂🫵</h2>
+    <div class="h2-text">
+      <h2>tapi belum bisa di download😂🫵</h2>
+    </div>
     <figure class="modal-wrap-img">
       <img class="modal-img" src="${movie.Poster}" />
       <button id="close-button">Close</button>
@@ -64,17 +84,41 @@ const showMovieDetail = (movie) =>
       <p>
         <strong>Year</strong>: ${movie.Year}
       </p>
-      <p><strong>Rated</strong>: ${movie.Rated}</p>
-      <p><strong>Released</strong>: ${movie.Released}</p>
-      <p><strong>Runtime</strong>: ${movie.Runtime}</p>
-      <p><strong>Genre</strong>: ${movie.Genre}</p>
-      <p><strong>Director</strong>: ${movie.Director}</p>
-      <p><strong>Writer</strong>: ${movie.Writer}</p>
-      <p><strong>Actors</strong>: ${movie.Actors}</p>
-      <p><strong>Plot</strong>: ${movie.Plot}</p>
-      <p><strong>Language</strong>: ${movie.Language}</p>
-      <p><strong>Country</strong>: ${movie.Country}</p>
-      <p><strong>imdbRating</strong>: ${movie.imdbRating}</p>
-      <p><strong>Type</strong>: ${movie.Type}</p>
+      <p>
+        <strong>Rated</strong>: ${movie.Rated}
+      </p>
+      <p>
+        <strong>Released</strong>: ${movie.Released}
+      </p>
+      <p>
+        <strong>Runtime</strong>: ${movie.Runtime}
+      </p>
+      <p>
+        <strong>Genre</strong>: ${movie.Genre}
+      </p>
+      <p>
+        <strong>Director</strong>: ${movie.Director}
+      </p>
+      <p>
+        <strong>Writer</strong>: ${movie.Writer}
+      </p>
+      <p>
+        <strong>Actors</strong>: ${movie.Actors}
+      </p>
+      <p>
+        <strong>Plot</strong>: ${movie.Plot}
+      </p>
+      <p>
+        <strong>Language</strong>: ${movie.Language}
+      </p>
+      <p>
+        <strong>Country</strong>: ${movie.Country}
+      </p>
+      <p>
+        <strong>imdbRating</strong>: ${movie.imdbRating}
+      </p>
+      <p>
+        <strong>Type</strong>: ${movie.Type}
+      </p>
     </section>
   </article>`;
