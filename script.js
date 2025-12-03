@@ -20,7 +20,7 @@ const uImovieError = (error) => {
 };
 
 const showError = (e) =>
-  `<section class="modal-error" data-aos="fade-down" data-aos-duration="200">${e}</section>`;
+  `<section class="modal-error" data-aos="fade-down" data-aos-duration="250">${e}</section>`;
 
 const fetchMovies = (value) =>
   fetch(`https://www.omdbapi.com/?apikey=db87e2cb&s=${value}`)
