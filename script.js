@@ -5,9 +5,22 @@ const searchButton = async () => {
     uImovie(movies);
     inputKeyword.value = "";
   } catch (error) {
-    alert(error);
+    uImovieError(error);
   }
 };
+
+const uImovieError = (error) => {
+  const modalErrorContainer =
+    document.getElementsByClassName("modal-error-wrap")[0];
+  modalErrorContainer.style.display = "flex";
+  modalErrorContainer.innerHTML = showError(error);
+  document.addEventListener("click", () => {
+    modalErrorContainer.style.display = "none";
+  });
+};
+
+const showError = (e) =>
+  `<section class="modal-error" data-aos="fade-down" data-aos-duration="200">${e}</section>`;
 
 const fetchMovies = (value) =>
   fetch(`https://www.omdbapi.com/?apikey=db87e2cb&s=${value}`)
