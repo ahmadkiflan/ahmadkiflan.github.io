@@ -12,12 +12,12 @@ const searchButton = async () => {
 const fetchMovies = (value) =>
   fetch(`https://www.omdbapi.com/?apikey=db87e2cb&s=${value}`)
     .then((response) => {
-      if (response.ok === false) throw new Error(response.status);
-      return response.json();
+      if (response.ok === true) return response.json();
+      throw new Error(response.status);
     })
     .then((response) => {
-      if (response.Response === "False") throw new Error(response.Error);
-      return response.Search;
+      if (response.Response === "True") return response.Search;
+      throw new Error(response.Error);
     });
 
 const uImovie = (movies) => {
@@ -54,8 +54,8 @@ document.addEventListener("click", async (e) => {
 const fetchMovieDetail = (imdbid) =>
   fetch(`https://www.omdbapi.com/?apikey=db87e2cb&i=${imdbid}`)
     .then((response) => {
-      if (response.ok === false) throw new Error(response.status);
-      return response.json();
+      if (response.ok === true) return response.json();
+      throw new Error(response.status);
     })
     .then((response) => response);
 
